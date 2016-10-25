@@ -16,19 +16,67 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
-public class PlayerMethods {
+public class PlayerMethods implements PlayerInterface{
 
 	private JFrame frame;
 	final JFileChooser fileChooser = new JFileChooser();
 	private MP3Player mp3Player=new MP3Player();
-	private JTextField textField;
+	//private JTextField textField;
 	private String path= "";
+	public int returnVal=0;
 	
 	
 	
-	public JFrame getframe(){
-		return this.frame;
+	/**
+	 * @return the frame
+	 */
+	public JFrame getframe() {
+		return frame;
 	}
+
+	/**
+	 * @param frame the frame to set
+	 */
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
+
+	/**
+	 * @return the mp3Player
+	 */
+	public MP3Player getMp3Player() {
+		return mp3Player;
+	}
+
+	/**
+	 * @param mp3Player the mp3Player to set
+	 */
+	public void setMp3Player(MP3Player mp3Player) {
+		this.mp3Player = mp3Player;
+	}
+
+	/**
+	 * @return the path
+	 */
+	public String getPath() {
+		return path;
+	}
+
+	/**
+	 * @param path the path to set
+	 */
+	public void setPath(String path) {
+		this.path = path;
+	}
+
+	/**
+	 * @return the fileChooser
+	 */
+	public JFileChooser getFileChooser() {
+		return fileChooser;
+	}
+
+	
 
 	/**
 	 * Launch the application.
@@ -65,8 +113,16 @@ public class PlayerMethods {
 		//MP3Player mp3Player=new MP3Player(new File("/Users/Mojgan/Downloads//Arash - boro boro.mp3"));
 		// Create a file chooser
 	//	final JFileChooser fileChooser = new JFileChooser();
+		this.openbutton();
+		this.play();
+		this.pause();
+		this.stop();
 		
-		JButton btnNewButton_1 = new JButton("Open");
+		
+		
+		
+		
+		/*JButton btnNewButton_1 = new JButton("Open");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -87,8 +143,7 @@ public class PlayerMethods {
 				//mp3Player=new MP3Player(new File(path));
 				mp3Player.addToPlayList(file);
 		        mp3Player.play();
-		        
-				
+		 		
 			}
 	
 	
@@ -97,12 +152,12 @@ public class PlayerMethods {
 		btnNewButton_1.setBounds(32, 74, 117, 29);
 		frame.getContentPane().add(btnNewButton_1);
 		
-		
+		*/
 		
 		System.out.println("hej****"+path);
 		
 		
-		JButton btnPlay = new JButton("Play");
+	/*	JButton btnPlay = new JButton("Play");
 		btnPlay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//MP3Player	mp3Player=new MP3Player(new File("/Users/Mojgan/Downloads//Arash - boro boro.mp3"));
@@ -121,7 +176,11 @@ public class PlayerMethods {
 		});
 		btnNewButton.setBounds(32, 131, 117, 29);
 		frame.getContentPane().add(btnNewButton);
+		*/
 		
+		
+		
+		/*
 		JButton btnStop = new JButton("Stop");
 		btnStop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -138,11 +197,102 @@ public class PlayerMethods {
 		JLabel lable2 = new JLabel(path);
 		lable2.setBounds(207, 102, 148, 29);
 		frame.getContentPane().add(lable2);
-		
-		
-		
 	
+		*/
+	}
+
+	public void open(){
+		
+		//showOpenDialog(JavaEditor.this);
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			File file = fileChooser.getSelectedFile();
+			path = file.getAbsolutePath();
+	////if mp3 open file *********************************************
+			System.out.println(path);
+			JLabel lblNewLabel_1 = new JLabel("path");
+			lblNewLabel_1.setBounds(149, 26, 220, 29);
+			frame.getContentPane().add(lblNewLabel_1);
+			lblNewLabel_1.setText(path);
+			//mp3Player=new MP3Player(new File(path));
+			mp3Player.addToPlayList(file);
+			mp3Player.play();
+		}
+	}
 		
 		
+	public void openbutton(){
+		JButton btnNewButton_1 = new JButton("Open");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				returnVal = fileChooser.showOpenDialog(btnNewButton_1);
+				open();
+			
+	/*		int returnVal = fileChooser.showOpenDialog(btnNewButton_1);
+			//showOpenDialog(JavaEditor.this);
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				File file = fileChooser.getSelectedFile();
+				path = file.getAbsolutePath();
+		////if mp3 open file *********************************************
+				System.out.println(path);
+				JLabel lblNewLabel_1 = new JLabel("path");
+				lblNewLabel_1.setBounds(149, 26, 220, 29);
+				frame.getContentPane().add(lblNewLabel_1);
+				lblNewLabel_1.setText(path);
+				//mp3Player=new MP3Player(new File(path));
+				mp3Player.addToPlayList(file);
+				mp3Player.play();
+ 		
+				}*/
+			}
+		});
+		
+		
+		btnNewButton_1.setBounds(32, 74, 117, 29);
+		frame.getContentPane().add(btnNewButton_1);
+	}
+	
+	
+	//////////////////////////////
+	public void play(){
+	JButton btnPlay = new JButton("Play");
+	btnPlay.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			//MP3Player	mp3Player=new MP3Player(new File("/Users/Mojgan/Downloads//Arash - boro boro.mp3"));
+	        mp3Player.play();
+		}
+	});
+	btnPlay.setBounds(32, 102, 117, 29);
+	frame.getContentPane().add(btnPlay);
+	}
+	//////////////////////////////
+	public void pause(){
+	JButton btnNewButton = new JButton("Pause");
+	btnNewButton.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			mp3Player.pause();	
+			
+		}
+	});
+	btnNewButton.setBounds(32, 131, 117, 29);
+	frame.getContentPane().add(btnNewButton);
+	}
+	
+	
+	////////////////////////////////////
+	public void stop(){
+	JButton btnStop = new JButton("Stop");
+	btnStop.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			mp3Player.stop();
+		}
+	});
+	btnStop.setBounds(32, 172, 117, 29);
+	frame.getContentPane().add(btnStop);
+	
+	JLabel lblNewLabel = new JLabel("music");
+	lblNewLabel.setBounds(52, 26, 51, 16);
+	frame.getContentPane().add(lblNewLabel);
 	}
 }
+
+
