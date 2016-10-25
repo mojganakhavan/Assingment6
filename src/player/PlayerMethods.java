@@ -12,12 +12,17 @@ import javax.swing.JFileChooser;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
 
 public class PlayerMethods {
 
 	private JFrame frame;
 	final JFileChooser fileChooser = new JFileChooser();
 	private MP3Player mp3Player=new MP3Player();
+	private JTextField textField;
+	private String path= "";
 	
 
 	/**
@@ -61,12 +66,18 @@ public class PlayerMethods {
 			public void actionPerformed(ActionEvent e) {
 				
 				
+				
 				int returnVal = fileChooser.showOpenDialog(btnNewButton_1);
 						//showOpenDialog(JavaEditor.this);
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
 				File file = fileChooser.getSelectedFile();
-				//String path = file.getAbsolutePath();
-				//System.out.println(path);
+			 path = file.getAbsolutePath();
+				
+				System.out.println(path);
+				JLabel lblNewLabel_1 = new JLabel("path");
+				lblNewLabel_1.setBounds(149, 26, 220, 29);
+				frame.getContentPane().add(lblNewLabel_1);
+				lblNewLabel_1.setText(path);
 				//textArea.setText(fileHandler.readFile(file));
 				//mp3Player=new MP3Player(new File(path));
 				mp3Player.addToPlayList(file);
@@ -78,8 +89,13 @@ public class PlayerMethods {
 	
 			}
 		});
-		btnNewButton_1.setBounds(32, 16, 117, 29);
+		btnNewButton_1.setBounds(32, 74, 117, 29);
 		frame.getContentPane().add(btnNewButton_1);
+		
+		
+		
+		System.out.println("hej****"+path);
+		
 		
 		JButton btnPlay = new JButton("Play");
 		btnPlay.addActionListener(new ActionListener() {
@@ -88,7 +104,7 @@ public class PlayerMethods {
 		        mp3Player.play();
 			}
 		});
-		btnPlay.setBounds(32, 60, 117, 29);
+		btnPlay.setBounds(32, 102, 117, 29);
 		frame.getContentPane().add(btnPlay);
 		
 		JButton btnNewButton = new JButton("Pause");
@@ -98,7 +114,7 @@ public class PlayerMethods {
 				
 			}
 		});
-		btnNewButton.setBounds(32, 113, 117, 29);
+		btnNewButton.setBounds(32, 131, 117, 29);
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnStop = new JButton("Stop");
@@ -110,7 +126,18 @@ public class PlayerMethods {
 		btnStop.setBounds(32, 172, 117, 29);
 		frame.getContentPane().add(btnStop);
 		
+		JLabel lblNewLabel = new JLabel("music");
+		lblNewLabel.setBounds(52, 26, 51, 16);
+		frame.getContentPane().add(lblNewLabel);
+		
+		JLabel lable2 = new JLabel(path);
+		lable2.setBounds(207, 102, 148, 29);
+		frame.getContentPane().add(lable2);
+		
+		
+		
+	
+		
 		
 	}
-
 }
