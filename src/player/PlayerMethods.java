@@ -24,11 +24,16 @@ public class PlayerMethods {
 	private JTextField textField;
 	private String path= "";
 	
+	
+	
+	public JFrame getframe(){
+		return this.frame;
+	}
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -39,7 +44,7 @@ public class PlayerMethods {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the application.
@@ -61,7 +66,7 @@ public class PlayerMethods {
 		// Create a file chooser
 	//	final JFileChooser fileChooser = new JFileChooser();
 		
-		JButton btnNewButton_1 = new JButton("New Song");
+		JButton btnNewButton_1 = new JButton("Open");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
