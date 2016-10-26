@@ -1,44 +1,38 @@
 package player;
+//import player.ViewPlayer;
+//import java.awt.EventQueue;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
+//mport javax.swing.JFrame;
 
 import jaco.mp3.player.MP3Player;
 
-import javax.swing.JButton;
+//import javax.swing.JButton;
 import javax.swing.JFileChooser;
 
-import java.awt.event.ActionListener;
+//import java.awt.event.ActionListener;
 import java.io.File;
-import java.awt.event.ActionEvent;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
+//import java.awt.event.ActionEvent;
+//import javax.swing.JLabel;
+//import javax.swing.JTextField;
+//import javax.swing.JTextPane;
 
-public class PlayerMethods implements PlayerInterface{
+public class PlayerMethods /*implements PlayerInterface*/{
 
-	private JFrame frame;
-	final JFileChooser fileChooser = new JFileChooser();
+	//private JFrame frame;
+	private JFileChooser fileChooser = new JFileChooser();
 	private MP3Player mp3Player=new MP3Player();
 	//private JTextField textField;
 	private String path= "";
-	public int returnVal=0;
+	private int returnVal=0;
+	//private File file;
+	//private ViewPlayer vp= new ViewPlayer();
 	
-	
-	
-	/**
-	 * @return the frame
-	 */
-	public JFrame getframe() {
-		return frame;
+	public int getReturnVal(){
+		return returnVal;
 	}
-
-	/**
-	 * @param frame the frame to set
-	 */
-	public void setFrame(JFrame frame) {
-		this.frame = frame;
+	
+	public void setReturnVal(int n){
+		this.returnVal= n;
 	}
 
 	/**
@@ -96,24 +90,26 @@ public class PlayerMethods implements PlayerInterface{
 
 	/**
 	 * Create the application.
-	 */
+	 */ 
 	public PlayerMethods() {
-		initialize();
+		//vp.initialize();
+		//System.out.println("hejhej333");
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+	/*private void initialize() {
+		vp.setFrame( new JFrame());
+		frame=vp.getframe();
+				frame.setBounds(100, 100, 450, 300);
+		vp.getframe().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		vp.getframe().getContentPane().setLayout(null);
 		//MP3Player mp3Player=new MP3Player();
 		//MP3Player mp3Player=new MP3Player(new File("/Users/Mojgan/Downloads//Arash - boro boro.mp3"));
 		// Create a file chooser
 	//	final JFileChooser fileChooser = new JFileChooser();
-		this.openbutton();
+		vp.openbutton();
 		this.play();
 		this.pause();
 		this.stop();
@@ -154,7 +150,7 @@ public class PlayerMethods implements PlayerInterface{
 		
 		*/
 		
-		System.out.println("hej****"+path);
+	//	System.out.println("hej****"+path);
 		
 		
 	/*	JButton btnPlay = new JButton("Play");
@@ -199,27 +195,42 @@ public class PlayerMethods implements PlayerInterface{
 		frame.getContentPane().add(lable2);
 	
 		*/
-	}
+	//}
 
 	public void open(){
 		
 		//showOpenDialog(JavaEditor.this);
+		System.out.println("returnVAl pm.open  "+returnVal);
+	
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			
+			System.out.println("returnVAl pm.open2  "+returnVal);
 			File file = fileChooser.getSelectedFile();
+			System.out.println("returnVAl pm.open3  "+file.getAbsolutePath());
 			path = file.getAbsolutePath();
 	////if mp3 open file *********************************************
-			System.out.println(path);
-			JLabel lblNewLabel_1 = new JLabel("path");
+			if (path.contains(".mp3")){
+			System.out.println("if mp3  "+path);
+			/*JLabel lblNewLabel_1 = new JLabel("path");
 			lblNewLabel_1.setBounds(149, 26, 220, 29);
-			frame.getContentPane().add(lblNewLabel_1);
-			lblNewLabel_1.setText(path);
+			vp.getframe().getContentPane().add(lblNewLabel_1);
+			lblNewLabel_1.setText(path);*/
 			//mp3Player=new MP3Player(new File(path));
 			mp3Player.addToPlayList(file);
 			mp3Player.play();
+			}
+		
+				
+			
 		}
+		if (returnVal == JFileChooser.ERROR_OPTION) {
+			System.out.println("fel!");
+		}
+		
+		
 	}
 		
-		
+/*		
 	public void openbutton(){
 		JButton btnNewButton_1 = new JButton("Open");
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -243,55 +254,56 @@ public class PlayerMethods implements PlayerInterface{
 				mp3Player.play();
  		
 				}*/
-			}
+		/*	}
 		});
 		
 		
 		btnNewButton_1.setBounds(32, 74, 117, 29);
 		frame.getContentPane().add(btnNewButton_1);
 	}
+	*/
 	
 	
 	//////////////////////////////
 	public void play(){
-	JButton btnPlay = new JButton("Play");
+	/*JButton btnPlay = new JButton("Play");
 	btnPlay.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-			//MP3Player	mp3Player=new MP3Player(new File("/Users/Mojgan/Downloads//Arash - boro boro.mp3"));
+		public void actionPerformed(ActionEvent e) {*/
+			
 	        mp3Player.play();
-		}
+/*		}
 	});
 	btnPlay.setBounds(32, 102, 117, 29);
-	frame.getContentPane().add(btnPlay);
+	vp.getframe().getContentPane().add(btnPlay);*/
 	}
 	//////////////////////////////
 	public void pause(){
-	JButton btnNewButton = new JButton("Pause");
+	/*JButton btnNewButton = new JButton("Pause");
 	btnNewButton.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
+		public void actionPerformed(ActionEvent e) {*/
 			mp3Player.pause();	
 			
-		}
+	/*	}
 	});
 	btnNewButton.setBounds(32, 131, 117, 29);
-	frame.getContentPane().add(btnNewButton);
+	vp.getframe().getContentPane().add(btnNewButton);*/
 	}
 	
 	
 	////////////////////////////////////
 	public void stop(){
-	JButton btnStop = new JButton("Stop");
+	/*JButton btnStop = new JButton("Stop");
 	btnStop.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
+		public void actionPerformed(ActionEvent e) {*/
 			mp3Player.stop();
-		}
+	/*	}
 	});
 	btnStop.setBounds(32, 172, 117, 29);
-	frame.getContentPane().add(btnStop);
+	vp.getframe().getContentPane().add(btnStop);
 	
 	JLabel lblNewLabel = new JLabel("music");
 	lblNewLabel.setBounds(52, 26, 51, 16);
-	frame.getContentPane().add(lblNewLabel);
+	vp.getframe().getContentPane().add(lblNewLabel);*/
 	}
 }
 
