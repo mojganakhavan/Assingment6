@@ -1,205 +1,184 @@
-
+/**
+ * The ViewPlayer class is creating the GUI for the
+ * program.
+ * ViewPlayer has got an attribute of type JFrame and one 
+ * attribute of type PlayerMethods and four attribute of type 
+ * JButton.
+ */
 package player;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
-import jaco.mp3.player.MP3Player;
+import java.awt.Color;
+import java.awt.Font;
 
 
 public class ViewPlayer {
 	
 	private JFrame frame;
-	//private MP3Player mp3player= new MP3Player();
 	private PlayerMethods pm= new PlayerMethods();
-	//final JFileChooser fileChooser = new JFileChooser();
-	private String path= "";
+	private JButton btnPlay = new JButton("Play");
+	private JButton btnOpen = new JButton("Open");
+	private JButton btnpauseButton = new JButton("Pause");
+	private JButton btnStop = new JButton("Stop");
 	
 	
 	
 	
 	/**
-	 * @return the frame
+	 *@return the frame
 	 */
 	public JFrame getframe() {
 		return frame;
 	}
 
 	/**
-	 * @param frame the frame to set
+	 *@param frame the frame to set
 	 */
 	public void setFrame(JFrame frame) {
 		this.frame = frame;
 	}
 	
+	
+	/**
+	 * ViewPlayer invokes initialize method that initializes all of components
+	 */
 	public ViewPlayer(){
-		System.out.println("hejhej23");
 		initialize();
 		
 	}
 	
-	public void openbutton(){
-		int n;
-		System.out.println("in openbutton ");
-		JButton btnNewButton_1 = new JButton("Open");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-		
-				int n =pm.getFileChooser().showOpenDialog(btnNewButton_1);
-				pm.setReturnVal(n);
-				//System.out.println("hhgggf  "+n);
-				//pm.setReturnVal(fileChooser.showOpenDialog(btnNewButton_1)); 
-				//System.out.println("hejhej openbutton"+pm.getReturnVal());
-				pm.open();
-				System.out.println("lable "+path);
-				JLabel lblNewLabel_1 = new JLabel("path");
-				lblNewLabel_1.setBounds(149, 26, 220, 29);
-				frame.getContentPane().add(lblNewLabel_1);
-				lblNewLabel_1.setText(pm.getPath());
-			
-	/*		int returnVal = fileChooser.showOpenDialog(btnNewButton_1);
-			//showOpenDialog(JavaEditor.this);
-			if (returnVal == JFileChooser.APPROVE_OPTION) {
-				File file = fileChooser.getSelectedFile();
-				path = file.getAbsolutePath();
-		////if mp3 open file *********************************************
-				System.out.println(path);
-				JLabel lblNewLabel_1 = new JLabel("path");
-				lblNewLabel_1.setBounds(149, 26, 220, 29);
-				frame.getContentPane().add(lblNewLabel_1);
-				lblNewLabel_1.setText(path);
-				//mp3Player=new MP3Player(new File(path));
-				mp3Player.addToPlayList(file);
-				mp3Player.play();
- 		
-				}*/
-			}
-		});
-		
-		
-		btnNewButton_1.setBounds(32, 74, 117, 29);
-		frame.getContentPane().add(btnNewButton_1);
-	}
-
+	
+/**
+ * initialize() initializes all of components
+ */
 	public void initialize() {
-		
-		System.out.println("hejhej1");
-		this.frame= new JFrame();
-		System.out.println("hejhej");
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		System.out.println("hejhej in initialize ");
+		framelayout();
+		lableMusic();
 		openbutton();
 		playButton();
 		pauseButton();
 		stopButton();
 
-		JLabel lblNewLabel = new JLabel("music");
-		lblNewLabel.setBounds(52, 26, 51, 16);
-		frame.getContentPane().add(lblNewLabel);
+	}
+	
+	
+	/**
+	 * 
+	 *framelayout() creates a frame with particular properties
+	 * 
+	 */
+	public void framelayout(){
+		this.frame= new JFrame();
+		frame.getContentPane().setBackground(Color.MAGENTA);
+		frame.getContentPane().setForeground(Color.WHITE);
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
 		
 	}
 	
-	public void playButton(){
-		
-		System.out.println("in");
-		JButton btnPlay = new JButton("Play");
-		btnPlay.addActionListener(new ActionListener() {
+	
+	
+	/**
+	 *lableMusic() creates a label with particular properties
+	 */
+	public void lableMusic(){
+		JLabel lbMusic = new JLabel("Music:");
+		lbMusic.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		lbMusic.setBounds(52, 26, 51, 16);
+		frame.getContentPane().add(lbMusic);
+	}
+	
+	
+	/**
+	 *newLb() creates a label with particular properties
+	 */
+	public void newLb(){
+		JLabel lblNewLabel_1 = new JLabel("path");
+		lblNewLabel_1.setBounds(149, 26, 220, 29);
+		frame.getContentPane().add(lblNewLabel_1);
+		lblNewLabel_1.setText(pm.getPath());
+	}
+	
+	
+	/**
+	 *openbutton() creates a button named 'open' with particular properties that open the chosen music
+	 */
+	
+	public void openbutton(){
+		btnOpen.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		btnOpen.setBackground(Color.YELLOW);
+		btnOpen.setForeground(new Color(0, 0, 0));
+		btnOpen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//MP3Player	mp3Player=new MP3Player(new File("/Users/Mojgan/Downloads//Arash - boro boro.mp3"));
-		        pm.play();
-			}
-		});
-		btnPlay.setBounds(32, 102, 117, 29);
-		frame.getContentPane().add(btnPlay);
-		}
-	
-	
-	
-	
-	public void pauseButton(){
-		JButton btnNewButton = new JButton("Pause");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				pm.pause();	
+				pm.setReturnVal(pm.getFileChooser().showOpenDialog(btnOpen));
+				pm.open();
+				newLb();
+				btnPlay.setEnabled(true);
+				btnStop.setEnabled(true);
+				btnpauseButton.setEnabled(true);
 				
 			}
 		});
-		btnNewButton.setBounds(32, 131, 117, 29);
-		frame.getContentPane().add(btnNewButton);
-		}
+		btnOpen.setBounds(22, 74, 92, 29);
+		frame.getContentPane().add(btnOpen);
+	}
 	
 	
 	
+	/**
+	 *playButton() creates a button named 'play' with particular properties that plays the music
+	 */
+	public void playButton(){
+		btnPlay.setEnabled(false);
+		btnPlay.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		//btnPlay.setIcon(new ImageIcon());
+		btnPlay.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+		        pm.play();
+			}
+		});
+		btnPlay.setBounds(126, 74, 92, 29);
+		frame.getContentPane().add(btnPlay);
+	}
 	
+	/**
+	 *pausebutton() creates a button named 'pause' with particular properties that pauses the music
+	 */
+	public void pauseButton(){
+		btnpauseButton.setEnabled(false);
+		btnpauseButton.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		btnpauseButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				pm.pause();	
+			}
+		});
+		btnpauseButton.setBounds(226, 74, 92, 29);
+		frame.getContentPane().add(btnpauseButton);
+	}
+	
+	
+	/**
+	 *stopbutton() creates a button named 'stop' with particular properties that stops the music
+	 */
 	public void stopButton(){
-		JButton btnStop = new JButton("Stop");
+		btnStop.setEnabled(false);
+		btnStop.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		btnStop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				pm.stop();
 			}
 		});
-		btnStop.setBounds(32, 172, 117, 29);
+		btnStop.setBounds(330, 74, 92, 29);
 		frame.getContentPane().add(btnStop);
-		
-		
-		}
-	
-
+	}
 }
 
 
 
 
 
-/*package player;
-
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-
-public class ViewPlayer {
-
-	private JFrame frame;
-
-	/**
-	 * Launch the application.
-	 */
-/*	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ViewPlayer window = new ViewPlayer();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
-/*	public ViewPlayer() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	/*private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
-
-}
-*/

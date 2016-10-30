@@ -1,5 +1,9 @@
 package player;
 
+/**
+ *@author Mojgan
+ *Interface PlayerInterface with four methods
+ */
 public interface PlayerInterface {
 	
 	
