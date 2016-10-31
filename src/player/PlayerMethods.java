@@ -1,4 +1,5 @@
 /**
+ * @author Mojgan
  * The PlayerMethods class uses an interface named playerInterface.
  * It has got one attribute of type JFileChooser and one attribute of type
  * MP3Player and two other attribute of type String and integer.

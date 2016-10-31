@@ -1,4 +1,5 @@
 /**
+ * @author Mojgan
  * The ViewPlayer class is creating the GUI for the
  * program.
  * ViewPlayer has got an attribute of type JFrame and one 
